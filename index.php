@@ -1,4 +1,5 @@
 <?php
+date_default_timezone_set('America/New_york');
 //set default value
 $message = '';
 
