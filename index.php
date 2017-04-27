@@ -50,15 +50,15 @@ switch ($action) {
             echo "<p>Error Message: $error_message </p>";
             $message = "Please enter two valid dates and click on the Submit button.";
         }
-        //$due_date->modify('+2 months');
         // make sure the due date is after the invoice date
         // format both dates
+        $now = new DateTime();
         $invoice_date_f = 'not implemented yet';
         $due_date_f = 'not implemented yet'; 
         
         // get the current date and time and format it
-        $current_date_f = 'not implemented yet';
-        $current_time_f = 'not implemented yet';
+        $current_date_f = date(' F d, Y');
+        $current_time_f = date('g:i:s a');
         
         // get the amount of time between the current date and the due date
         // and format the due date message
