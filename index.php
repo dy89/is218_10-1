@@ -36,7 +36,7 @@ switch ($action) {
         {
             $message = 'Enter two dates and click on the Submit button.';
         }
-        else
+        else 
         {
 
         }
@@ -52,18 +52,28 @@ switch ($action) {
         }
         // make sure the due date is after the invoice date
         // format both dates
-        $now = new DateTime();
-        $invoice_date_f = 'not implemented yet';
-        $due_date_f = 'not implemented yet'; 
+        if($invoice_date > $due_date)
+        {
+            $invoice_date_f = $invoice_date->format(' F d, Y');
+            $due_date_f = 'Please enter a due date that comes after the invoice date.';
+        }
+        else
+        {
+            $invoice_date_f = $invoice_date->format(' F d, Y');
+            $due_date_f = $due_date->format(' F d, Y'); 
+        }
         
         // get the current date and time and format it
-        $current_date_f = date(' F d, Y');
-        $current_time_f = date('g:i:s a');
+        $now = new DateTime();
+        $current_date_f = $now->format(' F d, Y');
+        $current_time_f = $now->format('g:i:s a');
         
         // get the amount of time between the current date and the due date
         // and format the due date message
-        $due_date_message = 'not implemented yet';
-
+        $due_date_diff = $now->diff($due_date);
+        //if($due_date_diff > 0)
+        //{
+           // $due_date_message = $due_date_diff->format()
         break;
 }
 include 'date_tester.php';
