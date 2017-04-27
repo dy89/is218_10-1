@@ -32,11 +32,18 @@ switch ($action) {
         $due_date_s = filter_input(INPUT_POST, 'due_date');
 
         // make sure the user enters both dates
-        
+        if($invoice_date_s == '' || $due_date_s == '')
+        {
+            $message = 'Enter two dates and click on the Submit button.';
+        }
+        else
+        {
+
+        }
         // convert date strings to DateTime objects
         // and use a try/catch to make sure the dates are valid
-        $invoice_date_s = new DateTime();
-        $due_date_s = clone $invoice_date_s;
+        $invoice_date = new DateTime($invoice_date_s);
+        $due_date = clone $invoice_date;
         $due_date->modify('+2 months');
         // make sure the due date is after the invoice date
         // format both dates
