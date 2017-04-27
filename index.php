@@ -42,9 +42,15 @@ switch ($action) {
         }
         // convert date strings to DateTime objects
         // and use a try/catch to make sure the dates are valid
-        $invoice_date = new DateTime($invoice_date_s);
-        $due_date = clone $invoice_date;
-        $due_date->modify('+2 months');
+        try{
+            $invoice_date = new DateTime($invoice_date_s);
+            $due_date = new DateTime($due_date_s);
+        } catch (Exception $e){
+            $error_message = $e->getMessage();
+            echo "<p>Error Message: $error_message </p>";
+            $message = "Please enter two valid dates and click on the Submit button.";
+        }
+        //$due_date->modify('+2 months');
         // make sure the due date is after the invoice date
         // format both dates
         $invoice_date_f = 'not implemented yet';
