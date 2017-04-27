@@ -54,8 +54,8 @@ switch ($action) {
         // format both dates
         if($invoice_date > $due_date)
         {
-            $invoice_date_f = $invoice_date->format(' F d, Y');
-            $due_date_f = 'Please enter a due date that comes after the invoice date.';
+            
+            $message = 'Please enter a due date that comes after the invoice date.';
         }
         else
         {
@@ -71,9 +71,14 @@ switch ($action) {
         // get the amount of time between the current date and the due date
         // and format the due date message
         $due_date_diff = $now->diff($due_date);
-        //if($due_date_diff > 0)
-        //{
-           // $due_date_message = $due_date_diff->format()
+        if($now > $due_date)
+        {
+            $due_date_message = $due_date_diff->format('This invoice is %y years, %m months, and %d days overdue.');
+        }
+        else
+        {
+            $due_date_message = $due_date_diff->format('This invoice is due in %y years, %m months, and %d days');
+        }
         break;
 }
 include 'date_tester.php';
